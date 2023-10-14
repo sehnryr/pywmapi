@@ -2,7 +2,7 @@ PYTHON := python
 PROJECT_DIR = .
 SRC_DIR := ${PROJECT_DIR}/src
 PACKAGE_DIR := ${SRC_DIR}/pywmapi
-TEST_DIR := ${PROJECT_DIR}/test
+TEST_DIR := ${PROJECT_DIR}/tests
 
 PIPREQS := pipreqs
 BLACK := black
