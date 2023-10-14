@@ -1,9 +1,0 @@
-black
-build
-dacite>=1.6
-isort
-pytest
-requests>=2
-sphinx
-twine
-websocket-client>=1.2

@@ -1,28 +1,43 @@
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
-
-[project]
+[tool.poetry]
 name = "pywmapi"
 version = "1.1.2"
-authors = [{ name = "leonardodalink", email = "linkyy2000313@gmail.com" }]
-keywords = ["warframe", "warframe market"]
 description = "API for warframe market."
+authors = ["leonardodalink <linkyy2000313@gmail.com>"]
+license = "MIT"
 readme = "README.md"
-license = { file = "LICENSE" }
-requires-python = ">=3.7"
+repository = "https://github.com/leonardodalinky/pywmapi"
+keywords = ["warframe", "warframe market"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Natural Language :: English",
 ]
-dependencies = [
-    "dacite>=1.6",
-    "requests>=2",
-    "websocket-client>=1.2",
-]
+packages = [{ include = "pywmapi", from = "src" }]
 
-[project.urls]
-Repository = "https://github.com/leonardodalinky/pywmapi"
-Tracker = "https://github.com/leonardodalinky/pywmapi/issues"
+[tool.poetry.dependencies]
+python = "^3.11"
+dacite = "^1.8.1"
+requests = "^2.31.0"
+websocket-client = "^1.6.4"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.9.1"
+pytest = "^7.4.2"
+isort = "^5.12.0"
+poethepoet = "^0.24.1"
+
+
+[tool.poe.tasks]
+black = "black --line-length=100 ./src/pywmapi"
+isort = "isort --profile=black --line-length=100 ./src/pywmapi"
+format = ["black", "isort"]
+test = "pytest ./tests"
+_build = "poetry build"
+build = ["format", "test", "_build"]
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
