@@ -41,10 +41,10 @@ jobs:
       - name: Install dependencies
         run: poetry install
       - name: Checking - Sort the imports
-        run: poetry poe isort --check
+        run: poetry run poe isort --check
       - name: Checking - Lint with black
-        run: poetry poe black --check
+        run: poetry run poe black --check
       - name: Run tests
-        run: poetry poe test
+        run: poetry run poe test
       - name: Build the package
         run: poetry build
